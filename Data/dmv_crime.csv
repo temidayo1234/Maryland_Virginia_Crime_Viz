@@ -1,4 +1,4 @@
-State,City,Violent Crime Rate,Latitude,Longitude
+State,City,Violent_Crime_Rate,Latitude,Longitude
 MARYLAND,La Plata,0.39,38.513875,-77.01034
 MARYLAND,Mount Rainier,0.52,38.94266,-76.967057
 MARYLAND,Laurel,0.45,39.093136,-76.881945
