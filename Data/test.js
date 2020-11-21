@@ -16,6 +16,7 @@ var chartHeight = svgHeight - chartMargin.top - chartMargin.bottom;
 var svg = d3
     .select("body")
     .append("svg")
+    .classed("svg-clear", true)
     .attr("height", svgHeight)
     .attr("width", svgWidth);
 
@@ -29,10 +30,7 @@ var chartGroup = svg.append("g")
     .classed("chart-here", true)
     .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
 
-//clear the chart when new entry is inserted
-function clearChart(name) {
-    document.getElementsByClassName(name) = "";
-};
+
 // Load data
 d3.csv("educationcrime.csv").then(function (Data) {
     var Data = Data;
@@ -45,16 +43,15 @@ d3.csv("educationcrime.csv").then(function (Data) {
     // Create event handlers 
     button.on("click", runEnter);
     form.on("submit", runEnter);
-    
+  
     //Funtion for when button is clicked
     function runEnter() {
-         document.querySelectorAll('g.x-chart,g.y-chart,rect.bar').forEach(function(a){
-            console.log(a); 
-            a.remove();
-            console.log(a)
-             });
-        document.getElementsByTagName("rect").innerHTML='';
-        //d3.event.preventDefault();
+        //d3.select(".chart-here").html('')
+          document.querySelectorAll('.x-chart, .y-chart,.bar').forEach(function(a){
+             a.remove(); 
+              });
+       
+        d3.event.preventDefault();
         var inputElement = d3.select("#state-form-input");
         // Get the value property of the input element
         var inputValue = inputElement.property("value");
@@ -67,7 +64,7 @@ d3.csv("educationcrime.csv").then(function (Data) {
                     yValues.push(data[inputValue])
                 };
             });
-        });
+        });console.log(yValues);
 
         // scale y to chart height
         var yScale = d3.scaleLinear()
@@ -83,7 +80,6 @@ d3.csv("educationcrime.csv").then(function (Data) {
         // create axes
         var yAxis = d3.axisLeft(yScale);
         var xAxis = d3.axisBottom(xScale);
-
         
         // set x and y to the bottom of the chart
         chartGroup.append("g")
@@ -99,10 +95,13 @@ d3.csv("educationcrime.csv").then(function (Data) {
             .data(yValues)
             .enter()
             .append("rect")
-            .classed("bar", true)
+            .classed('bar', true)
             .attr("width", xScale.bandwidth())
             .attr("height", d => chartHeight - yScale(d))
             .attr("x", (d, i) => xScale(xLabels[i]))
             .attr("y", d => yScale(d));
+        yValues.length=0;
+        console.log(yValues);
     }
+
 }).catch(function (error) { console.log(error); });
