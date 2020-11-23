@@ -51,8 +51,8 @@ def home():
     """List all available api routes."""
     return (
         f"Available Routes:<br/>"
-        f"/education"
-        f"/marital-status"
+        f"/education <br/>"
+        f"/marital-status <br/> "
     )
 
 @app.route("/education")
@@ -73,11 +73,11 @@ def ed_submit():
             bachelor = result[4]
             graduate = result[5]
     location_data = [{
-        "none": none,
-        "high_school": high_school,
-        "associate": associate,
-        "bachelor": bachelor,
-        "graduate": graduate,
+        "None": none,
+        "High School": high_school,
+        "Associate": associate,
+        "Bachelor": bachelor,
+        "Graduate": graduate,
     }]
     return render_template("ed_chart.html",location_data=location_data)
 
