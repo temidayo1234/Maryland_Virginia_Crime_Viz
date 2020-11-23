@@ -39,7 +39,7 @@ class MaritalStatusCrime(db.Model):
     Separateds = db.Column(db.Float)
     Widoweds = db.Column(db.Float)
 
-    def __init__(self, Never_Marrieds, Marrieds,Divorceds, Separated, Widoweds):
+    def __init__(self, Never_Marrieds, Marrieds,Divorceds, Separateds, Widoweds):
         self.Never_Marrieds= Never_Marrieds
         self.Marrieds= Marrieds
         self.Divorceds=Divorceds
@@ -106,7 +106,7 @@ def marital_submit():
         "Never Married": Never_Marrieds,
         "Married": Marrieds,
         "Divorced": Divorceds,
-        "Separated": Separateds,
+        "Separateds": Separateds,
         "Widowed": Widoweds,
     }]
     return render_template("ms_chart.html",location_data=location_data)
