@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>MD-VA_Crime_Data</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<div class="container">
+		  <div class="row">
+			<div class="col-md-12">
+			  <form id="form" action='/submit' method="POST">
+				<div class="form-group">
+				  <label for="md-va-form2">Search for City and State (City, State)</label>
+				  <input class="form-control" id="state-form-input" name="search-form" type="text" placeholder=" ">
+				</div>
+				<button id="button" type="submit" class="btn btn-default">Enter</button>
+			  </form>
+			</div>
+		  </div>
+		  <!-- <div class="row">
+			<div class="col-md-12">
+			  <h1>Filtered Data Summary</h1>
+			  <ul class="summary"></ul>
+			</div>
+		  </div> -->
+		</div>
+	  
+		<script src="https://d3js.org/d3.v5.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+		<script type="text/javascript" src="test2.js"></script>
+  </body>
+</html>
