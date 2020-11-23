@@ -60,7 +60,7 @@ def education():
     return render_template("ed.html")
 
 @app.route("/education-submit", methods=["GET", "POST"])
-def submit():
+def ed_submit():
     if request.method == "POST":
         Location = request.form["search-form"]
     
@@ -82,15 +82,15 @@ def submit():
     return render_template("ed_chart.html",location_data=location_data)
 
 @app.route("/ed-chart")   
-def chart():
+def ed_chart():
     return render_template("ed_chart.html")
 
 @app.route("/marital-status")
-def education():
+def marital_status():
     return render_template("ms.html")
 
 @app.route("/marital-status-submit", methods=["GET", "POST"])
-def submit():
+def marital_submit():
     if request.method == "POST":
         Location = request.form["search-form"]
     
@@ -112,7 +112,7 @@ def submit():
     return render_template("ms_chart.html",location_data=location_data)
 
 @app.route("/ms-chart")   
-def chart():
+def marital_chart():
     return render_template("ms_chart.html")
 
 if __name__ == "__main__":
