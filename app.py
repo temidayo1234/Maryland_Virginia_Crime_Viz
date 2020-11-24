@@ -222,7 +222,7 @@ def race_submit():
     location_data = [{
         'Black': Black,
         'Asian': Asian,
-        'NativeHawaiian_Pacific_Islander'= NativeHawaiian_Pacific_Islander,
+        'NativeHawaiian_Pacific_Islander':NativeHawaiian_Pacific_Islander,
         'White': White,
         'Hispanic_Latino': Hispanic_Latino,
         'AmericanIndian_AlaskanNative': AmericanIndian_AlaskanNative,
