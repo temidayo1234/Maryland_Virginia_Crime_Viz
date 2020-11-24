@@ -51,7 +51,7 @@ class IncomeUnEmploy(db.Model):
     __tablename__='crime_incomeunemploy'
     Location = db.Column(db.String(200), primary_key=True)
     Unemployment = db.Column(db.Float)
-    Median_Income = db.Column(db.Float)
+    Median_Income = db.Column(db.Integer)
 
     def __init__(self, Unemployment, Median_Income):
         self.Unemployment= Unemployment
@@ -118,7 +118,7 @@ def marital_submit():
         "Never Married": Never_Marrieds,
         "Married": Marrieds,
         "Divorced": Divorceds,
-        "Separateds": Separateds,
+        "Separated": Separateds,
         "Widowed": Widoweds,
     }]
     return render_template("ms_chart.html",location_data=location_data)
