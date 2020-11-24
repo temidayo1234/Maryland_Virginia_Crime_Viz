@@ -14,7 +14,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   accessToken: API_KEY
 }).addTo(myMap);
 
-var link =  "../../Data/dmv_crime.csv"
+var link =  "/static/dmv_crime.csv"
 
 // Grab the data with d3
 d3.json(link, function(response) {
@@ -29,9 +29,10 @@ d3.json(link, function(response) {
     var long = response[i]["Longitude\r"];
     var lat = response[i].Latitude;
     console.log(long,lat);
+
     // Add a new marker to the cluster group and bind a pop-up
       markers.addLayer(L.marker([lat, long])
-        .bindPopup(response[i].City));
+        .bindPopup("<h1>" + response[i].City + "</h1> <hr> <h2>" + "Crime Rate: "+ response[i].Violent_Crime_Rate + "% </h2>"));
     
 
   }
