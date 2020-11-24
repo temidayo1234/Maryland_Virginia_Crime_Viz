@@ -13,7 +13,7 @@ var chart = new Chartist.Pie('.ct-chart', {
     donut: true,
     showLabel: true,
     labelInterpolationFnc: function(value) {
-        return Math.round(value / series.reduce(sum) * 100) + '%'};
+        return Math.round(value / series.reduce(sum) * 100) + '%'}
 });
 
 chart.on('draw', function (data) {
