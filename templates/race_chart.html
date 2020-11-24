@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <link href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css" rel="stylesheet" type="text/css" />
     <title>Race Pie Chart</title>
     <style>
         html {
@@ -23,6 +25,7 @@
             <h2>Percentage of Racial Constituency</h2>
         </div>
     </div>
+    <div class="ct-chart ct-golden-section"></div>
     <script type="text/javascript">
         function myFunc(vars) { return vars }
         location_data = myFunc({{ location_data| tojson}})
@@ -31,6 +34,7 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
     <script type="text/javascript" src="static/js/pie.js"></script>
+    
 </body>
 
 </html>

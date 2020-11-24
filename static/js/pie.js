@@ -10,7 +10,7 @@ var chart = new Chartist.Pie('.ct-chart', {
     labels: labels
 }, {
     donut: true,
-    showLabel: false
+    showLabel: true,
 });
 
 chart.on('draw', function (data) {
