@@ -13,6 +13,23 @@ app.config['JSON_SORT_KEYS'] = False
 
 db = SQLAlchemy(app)
 
+# Map table
+
+
+class crime (db.Model):
+    __tablename__ = 'crime_location'
+    State = db.Column(db.String(200))
+    City = db.Column(db.String(200), primary_key=True)
+    Violent_Crime_Rate = db.Column(db.Float)
+    Latitude = db.Column(db.Float)
+    Longitude = db.Column(db.Float)
+
+    def __init__(self, State, City, Violent_Crime_Rate, Latitude, Longitude):
+        self.State = State
+        self.City = City
+        self.Violent_Crime_Rate = Violent_Crime_Rate
+        self.Latitude = Latitude
+        self.Longitude = Longitude
 # Education table
 
 
@@ -32,6 +49,8 @@ class EducationCrime(db.Model):
         self.bachelor = bachelor
         self.graduate = graduate
 # Marital Status table
+
+
 class MaritalStatusCrime(db.Model):
     __tablename__ = 'crime_maritalstatus'
     Location = db.Column(db.String(200), primary_key=True)
@@ -49,6 +68,8 @@ class MaritalStatusCrime(db.Model):
         self.Widoweds = Widoweds
 
 # Income and Unemployment table
+
+
 class IncomeUnEmploy(db.Model):
     __tablename__ = 'crime_incomeunemploy'
     Location = db.Column(db.String(200), primary_key=True)
@@ -63,7 +84,24 @@ class IncomeUnEmploy(db.Model):
 @app.route('/')
 def home():
     return render_template("index.html")
+    
+@app.route('/map')
+def map():
 
+    results = db.session.query(
+        crime.City, crime.Violent_Crime_Rate, crime.Latitude, crime.Longitude).all()
+    City = [result[0] for result in results]
+    Violent_Crime_Rate = [result[1]for result in results]
+    Latitude = [result[2] for result in results]
+    Longitude = [result[3] for result in results]
+
+    location_data = [{
+        "City": City,
+        "Violent Crime Rate": Violent_Crime_Rate,
+        "Latitude": Latitude,
+        "Longitude": Longitude,
+    }]
+    return render_template("map.html", location_data=location_data)
 
 @app.route("/education")
 def education():
@@ -131,6 +169,7 @@ def marital_submit():
 @app.route("/ms-chart")
 def marital_chart():
     return render_template("ms_chart.html")
+
 
 if __name__ == "__main__":
     app.run()
