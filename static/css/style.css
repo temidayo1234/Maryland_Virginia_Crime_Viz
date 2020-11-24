@@ -42,3 +42,7 @@ h1{
     fill: red;
   }
   
+  label.impact {
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 28px;
+  }
