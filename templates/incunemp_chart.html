@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
     <title>Income and Unemployment Bar Chart</title>
 </head>
 
 <body>
-    <h2>Income and Unemployment Data</h2>
+    <h2 class='.center'>Income and Unemployment Data</h2>
     <script type="text/javascript">
         function myFunc(vars) { return vars }
         location_data = myFunc({{ location_data| tojson}})
