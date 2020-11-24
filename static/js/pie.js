@@ -12,8 +12,8 @@ var chart = new Chartist.Pie('.ct-chart', {
 }, {
     donut: true,
     showLabel: true,
-    labelInterpolationFnc: function(value) {
-        return Math.round(value / series.reduce(sum) * 100) + '%'}
+    labelInterpolationFnc: function(value, idx) {
+        return value + " - " + series[idx]+ " % ";}
 });
 
 chart.on('draw', function (data) {
@@ -61,5 +61,5 @@ chart.on('created', function () {
         clearTimeout(window.__anim21278907124);
         window.__anim21278907124 = null;
     }
-    window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
+    window.__anim21278907124 = setTimeout(chart.update.bind(chart), 100000);
 });
