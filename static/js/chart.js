@@ -42,7 +42,7 @@ function makeResponsive() {
         .padding(0.05);
 
     // create axes
-    var yAxis = d3.axisLeft(`${yScale}%`);
+    var yAxis = d3.axisLeft(yScale);
     var xAxis = d3.axisBottom(xScale);
     var chartGroup = svg.append("g")
         .classed("chart-here", true)
