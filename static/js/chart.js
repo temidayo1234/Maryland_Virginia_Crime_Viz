@@ -68,7 +68,7 @@ function makeResponsive() {
         .attr("x", (d, i) => xScale(xLabels[i]))
         .attr("y", d => yScale(d));
     yValues.length = 0;
-    console.log(yValues);
+   
 
     // Step 1: Append a div to the body to create tooltips, assign it a class
     // =======================================================

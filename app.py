@@ -132,35 +132,5 @@ def marital_submit():
 def marital_chart():
     return render_template("ms_chart.html")
 
-
-@app.route("/income-unemployment")
-def income_unemployment():
-    return render_template("incunemp.html")
-
-
-@app.route("/income-unemployment-submit", methods=["GET", "POST"])
-def income_unemployment_submit():
-    if request.method == "POST":
-        Location = request.form["search-form"]
-
-    results = db.session.query(IncomeUnEmploy.Location,
-        IncomeUnEmploy.Unemployment, IncomeUnEmploy.Median_Income).all()
-    for result in results:
-        if (result[0] == Location):
-            Unemployment = result[1]
-            Median_Income = result[2]
-
-    location_data = [{
-        "Unemployment": Unemployment,
-        "Median Income": Median_Income,
-    }]
-    return render_template("incunemp_chart.html", location_data=location_data)
-
-
-@app.route("/income-unemployment-chart")
-def income_unemployment_chart():
-    return render_template("incunemp_chart.html")
-
-
 if __name__ == "__main__":
     app.run()
