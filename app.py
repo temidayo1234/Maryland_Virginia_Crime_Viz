@@ -198,12 +198,12 @@ def marital_chart():
 
 
 @app.route("/race")
-def marital_status():
+def race():
     return render_template("race.html")
 
 
 @app.route("/race-submit", methods=["GET", "POST"])
-def ed_submit():
+def race_submit():
     if request.method == "POST":
         Location = request.form["search-form"]
 
@@ -231,6 +231,9 @@ def ed_submit():
     }]
     return render_template("race_chart.html", location_data=location_data)
 
-
+@app.route("/race-chart")
+def race_chart():
+    return render_template("race_chart.html")
+    
 if __name__ == "__main__":
     app.run()
