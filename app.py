@@ -1,21 +1,23 @@
 # import necessary libraries
+from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, render_template, jsonify, request
 
 app = Flask(__name__)
 
-from flask_sqlalchemy import SQLAlchemy
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://xdpgmdhrnknqxl:4fc3642dabb4d67167f5ddbf940bfc499cea51caf1be2423e6bd7a9209d0500a@ec2-54-159-107-189.compute-1.amazonaws.com:5432/dd26aote6e71t3'
 
 # Remove tracking modifications
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# Remove auto sort 
+# Remove auto sort
 app.config['JSON_SORT_KEYS'] = False
 
 db = SQLAlchemy(app)
 
 # Education table
+
+
 class EducationCrime(db.Model):
-    __tablename__='crime_education'
+    __tablename__ = 'crime_education'
     Location = db.Column(db.String(200), primary_key=True)
     none = db.Column(db.Float)
     high_school = db.Column(db.Float)
@@ -23,15 +25,17 @@ class EducationCrime(db.Model):
     bachelor = db.Column(db.Float)
     graduate = db.Column(db.Float)
 
-    def __init__(self, none, high_school,associate, bachelor, graduate):
-        self.none= none
-        self.high_school= high_school
-        self.associate=associate
-        self.bachelor=bachelor
-        self.graduate=graduate
+    def __init__(self, none, high_school, associate, bachelor, graduate):
+        self.none = none
+        self.high_school = high_school
+        self.associate = associate
+        self.bachelor = bachelor
+        self.graduate = graduate
 # Marital Status table
+
+
 class MaritalStatusCrime(db.Model):
-    __tablename__='crime_maritalstatus'
+    __tablename__ = 'crime_maritalstatus'
     Location = db.Column(db.String(200), primary_key=True)
     Never_Marrieds = db.Column(db.Float)
     Marrieds = db.Column(db.Float)
@@ -39,43 +43,49 @@ class MaritalStatusCrime(db.Model):
     Separateds = db.Column(db.Float)
     Widoweds = db.Column(db.Float)
 
-    def __init__(self, Never_Marrieds, Marrieds,Divorceds, Separateds, Widoweds):
-        self.Never_Marrieds= Never_Marrieds
-        self.Marrieds= Marrieds
-        self.Divorceds=Divorceds
-        self.Separateds=Separateds
-        self.Widoweds=Widoweds
+    def __init__(self, Never_Marrieds, Marrieds, Divorceds, Separateds, Widoweds):
+        self.Never_Marrieds = Never_Marrieds
+        self.Marrieds = Marrieds
+        self.Divorceds = Divorceds
+        self.Separateds = Separateds
+        self.Widoweds = Widoweds
 
 # Income and Unemployment table
+
+
 class IncomeUnEmploy(db.Model):
-    __tablename__='crime_incomeunemploy'
+    __tablename__ = 'crime_incomeunemploy'
     Location = db.Column(db.String(200), primary_key=True)
     Unemployment = db.Column(db.Float)
     Median_Income = db.Column(db.Integer)
 
     def __init__(self, Unemployment, Median_Income):
-        self.Unemployment= Unemployment
-        self.Median_Income= Median_Income
+        self.Unemployment = Unemployment
+        self.Median_Income = Median_Income
+
 
 @app.route('/')
 def home():
     return render_template("index.html")
-        
+
+
 @app.route("/education")
 def education():
     return render_template("ed.html")
+
 
 @app.route("/education-submit", methods=["GET", "POST"])
 def ed_submit():
     if request.method == "POST":
         Location = request.form["search-form"]
-    
-    results = db.session.query(EducationCrime.Location, EducationCrime.none, EducationCrime.high_school,EducationCrime.associate,EducationCrime.bachelor,EducationCrime.graduate).all() 
+
+    results = db.session.query(EducationCrime.Location, EducationCrime.none, EducationCrime.high_school,
+                               EducationCrime.associate, EducationCrime.bachelor, EducationCrime.graduate).all()
     for result in results:
-        if (result[0]==Location):
-            none= result[1]
-            high_school= result[2]
-            associate= result[3]
+        if (result[0] == Location):
+            none = result[1]
+            high_school = result[2]
+            associate = result[3]
             bachelor = result[4]
             graduate = result[5]
     location_data = [{
@@ -85,27 +95,31 @@ def ed_submit():
         "Bachelor": bachelor,
         "Graduate": graduate,
     }]
-    return render_template("ed_chart.html",location_data=location_data)
+    return render_template("ed_chart.html", location_data=location_data)
 
-@app.route("/ed-chart")   
+
+@app.route("/ed-chart")
 def ed_chart():
     return render_template("ed_chart.html")
+
 
 @app.route("/marital-status")
 def marital_status():
     return render_template("ms.html")
 
+
 @app.route("/marital-status-submit", methods=["GET", "POST"])
 def marital_submit():
     if request.method == "POST":
         Location = request.form["search-form"]
-    
-    results = db.session.query(MaritalStatusCrime.Location, MaritalStatusCrime.Never_Marrieds, MaritalStatusCrime.Marrieds,MaritalStatusCrime.Divorceds,MaritalStatusCrime.Separateds,MaritalStatusCrime.Widoweds).all() 
+
+    results = db.session.query(MaritalStatusCrime.Location, MaritalStatusCrime.Never_Marrieds, MaritalStatusCrime.Marrieds,
+                               MaritalStatusCrime.Divorceds, MaritalStatusCrime.Separateds, MaritalStatusCrime.Widoweds).all()
     for result in results:
-        if (result[0]==Location):
-            Never_Marrieds= result[1]
-            Marrieds= result[2]
-            Divorceds= result[3]
+        if (result[0] == Location):
+            Never_Marrieds = result[1]
+            Marrieds = result[2]
+            Divorceds = result[3]
             Separateds = result[4]
             Widoweds = result[5]
     location_data = [{
@@ -115,36 +129,42 @@ def marital_submit():
         "Separated": Separateds,
         "Widowed": Widoweds,
     }]
-    return render_template("ms_chart.html",location_data=location_data)
+    return render_template("ms_chart.html", location_data=location_data)
 
-@app.route("/ms-chart")   
+
+@app.route("/ms-chart")
 def marital_chart():
     return render_template("ms_chart.html")
+
 
 @app.route("/income-unemployment")
 def income_unemployment():
     return render_template("incunemp.html")
 
+
 @app.route("/income-unemployment-submit", methods=["GET", "POST"])
 def income_unemployment_submit():
     if request.method == "POST":
         Location = request.form["search-form"]
-    
-    results = db.session.query(IncomeUnEmploy.Unemployment, IncomeUnEmploy.Median_Income).all() 
+
+    results = db.session.query(
+        IncomeUnEmploy.Unemployment, IncomeUnEmploy.Median_Income).all()
     for result in results:
-        if (result[0]==Location):
-            Unemployment= result[1]
-            Median_Income= result[2]
+        if (result[0] == Location):
+            Unemployment = result[1]
+            Median_Income = result[2]
 
     location_data = [{
         "Unemployment": Unemployment,
-        "Median Income": Median_Income
+        "Median Income": Median_Income,
     }]
-    return render_template("incunemp_chart.html",location_data=location_data)
+    return render_template("incunemp_chart.html", location_data=location_data)
 
-@app.route("/income-unemployment-chart")   
+
+@app.route("/income-unemployment-chart")
 def income_unemployment_chart():
     return render_template("incunemp_chart.html")
+
 
 if __name__ == "__main__":
     app.run()
