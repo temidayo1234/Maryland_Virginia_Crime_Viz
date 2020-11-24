@@ -67,18 +67,6 @@ class MaritalStatusCrime(db.Model):
         self.Separateds = Separateds
         self.Widoweds = Widoweds
 
-# Income and Unemployment table
-
-
-class IncomeUnEmploy(db.Model):
-    __tablename__ = 'crime_incomeunemploy'
-    Location = db.Column(db.String(200), primary_key=True)
-    Unemployment = db.Column(db.Float)
-    Median_Income = db.Column(db.Integer)
-
-    def __init__(self, Unemployment, Median_Income):
-        self.Unemployment = Unemployment
-        self.Median_Income = Median_Income
 # Race table
 
 
@@ -87,7 +75,7 @@ class Race(db.Model):
     Location = db.Column(db.String(200), primary_key=True)
     Blacks = db.Column(db.Float)
     Asians = db.Column(db.Float)
-    NativeHawaiian_Pacific_Islanders = db.Column(db.Float)
+    NativeHawaiian_PacificIslanders = db.Column(db.Float)
     Whites = db.Column(db.Float)
     Hispanics_Latinos = db.Column(db.Float)
     AmericanIndian_AlaskanNatives = db.Column(db.Float)
@@ -97,7 +85,7 @@ class Race(db.Model):
     def __init__(self, Blacks, Asians, NativeHawaiian_PacficicIslanders, Whites, Hispanics_Latinos, AmericanIndian_AlaskanNatives, Two_or_Mores, Others):
         self.Blacks = Blacks
         self.Asians = Asians
-        self.NativeHawaiian_Pacific_Islanders = NativeHawaiian_PacficicIslanders
+        self.NativeHawaiian_PacificIslanders = NativeHawaiian_PacficicIslanders
         self.Whites = Whites
         self.Hispanics_Latinos = Hispanics_Latinos
         self.AmericanIndian_AlaskanNatives = AmericanIndian_AlaskanNatives
@@ -207,13 +195,13 @@ def race_submit():
     if request.method == "POST":
         Location = request.form["search-form"]
 
-    results = db.session.query(Race.Location, Race.Blacks, Race.Asians, Race.NativeHawaiian_Pacific_Islanders, Race.Whites,
+    results = db.session.query(Race.Location, Race.Blacks, Race.Asians, Race.NativeHawaiian_PacificIslanders, Race.Whites,
                                Race.Hispanics_Latinos, Race.AmericanIndian_AlaskanNatives, Race.Two_or_Mores, Race.Others).all()
     for result in results:
         if (result[0] == Location):
             Black = result[1]
             Asian = result[2]
-            NativeHawaiian_Pacific_Islander = result[3]
+            NativeHawaiian_PacificIslander = result[3]
             White = result[4]
             Hispanic_Latino = result[5]
             AmericanIndian_AlaskanNative = result[6]
@@ -222,7 +210,7 @@ def race_submit():
     location_data = [{
         'Black': Black,
         'Asian': Asian,
-        'NativeHawaiian_Pacific_Islander':NativeHawaiian_Pacific_Islander,
+        'NativeHawaiian_PacificIslander':NativeHawaiian_PacificIslander,
         'White': White,
         'Hispanic_Latino': Hispanic_Latino,
         'AmericanIndian_AlaskanNative': AmericanIndian_AlaskanNative,
