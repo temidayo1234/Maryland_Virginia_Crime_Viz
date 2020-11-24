@@ -4,6 +4,7 @@ location_data.forEach(function (data) {
     Object.entries(data).forEach(([key, value]) => { labels.push(key); series.push(value) })
 });
 
+var sum = function(a, b) { return a + b };
 
 var chart = new Chartist.Pie('.ct-chart', {
     series: series,
@@ -11,9 +12,8 @@ var chart = new Chartist.Pie('.ct-chart', {
 }, {
     donut: true,
     showLabel: true,
-    labelInterpolationFnc: function(value, idx) {
-        var percentage = Math.round(value / series.reduce(sum) * 100) + '%';
-        return labels[idx] + ' ' + percentage;}
+    labelInterpolationFnc: function(value) {
+        return Math.round(value / series.reduce(sum) * 100) + '%';
 });
 
 chart.on('draw', function (data) {
