@@ -14,10 +14,10 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   accessToken: API_KEY
 }).addTo(myMap);
 
-var link =  "/static/dmv_crime.csv"
+// var link =  "/static/dmv_crime.csv"
 
 // Grab the data with d3
-d3.json(link, function(response) {
+{{d3.json(link, function(response) {
   console.log(response);
   // Create a new marker cluster group
   var markers = L.markerClusterGroup();
@@ -40,4 +40,4 @@ d3.json(link, function(response) {
 // Add our marker cluster layer to the map
   myMap.addLayer(markers);
 
-});
+})}};

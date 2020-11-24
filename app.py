@@ -6,9 +6,24 @@ import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
-
+import psycopg2
 from flask import Flask, jsonify
 from flask import Flask, render_template
+
+
+#################################################
+# Database Setup
+engine = create_engine('postgresql://postgres:Lekan011singer!@localhost/dmv')
+
+# reflect an existing database into a new model
+Base = automap_base()
+# reflect the tables
+Base.prepare(engine, reflect=True)
+
+# Save reference to the table
+crime = Base.classes.crime
+
+
 
 #################################################
 # Flask Setup
@@ -34,7 +49,20 @@ def welcome():
 
 @app.route("/locations")
 def locations():
-    return render_template('index.html')
+     # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    """Return a list of all passenger names"""
+    # Query all passengers
+    results = session.query(crime).all()
+
+    session.close()
+
+    # Convert list of tuples into normal list
+    all_data = list(np.ravel(results))
+
+    link = jsonify(all_data)
+    return render_template('index.html',link=link)
 
 
 # @app.route("/api/v1.0/search")
