@@ -3,42 +3,43 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>MD-VA-Marital_Status</title>
+	<title>MD-VA-Race</title>
 	<link rel="stylesheet" type="text/css" href="static/css/style.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<style>
-		html {
-			background: url(https://wallpaperset.com/w/full/8/4/e/488828.jpg);
-			background-size: cover;
-			background-repeat: no-repeat;
-		}
-	</style>
+        <style>
+            html {
+                background: url(https://wallpaperset.com/w/full/9/a/2/134056.jpg);
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+        </style>
 </head>
 
 <body>
 	<div class="container">
-		<nav class="navbar navbar-default" style="background-color: #f50808c0;">
-			<!-- <div class="container-fluid"> -->
+		<nav class="navbar navbar-default" style="background-color: #179bf3df;">
+			<div class="container-fluid">
 				<!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
-				<ul class="nav navbar-nav navbar-expand-xl center" style="background-color: #da8c25dc;">
+				<ul class="nav navbar-nav navbar-expand-xl center" style="background-color: #ee334ce8;">
 					<li><a href="/">Home</a></li>
 					<li><a href="/map">Map</a></li>
 					<li><a href="/education">Education</a></li>
-					<li class="active"><a href="/marital-status">Marital Status</a></li>
+                    <li><a href="/marital-status">Marital Status</a></li>
+                    <li class="active"><a href="/race">Race</a></li>
 
-				<!-- </ul> -->
+				</ul>
 
 			</div>
 	</div>
 	</nav>
 	<div class="jumbotron center">
-		<h1>Maryland-Virginia Marital Status Data Search</h1>
+		<h1>Maryland-Virginia Race Data Search</h1>
 
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<form id="form" action='/marital-status-submit' method="POST">
+			<form id="form" action='/race-submit' method="POST">
 				<div class="form-group">
 					<label for="md-va-form2">Search for City and State (City, State)</label>
 					<input class="form-control" id="state-form-input" name="search-form" type="text" placeholder=" ">

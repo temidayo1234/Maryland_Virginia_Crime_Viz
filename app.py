@@ -79,12 +79,37 @@ class IncomeUnEmploy(db.Model):
     def __init__(self, Unemployment, Median_Income):
         self.Unemployment = Unemployment
         self.Median_Income = Median_Income
+# Race table
+
+
+class Race(db.Model):
+    __tablename__ = 'crime_race'
+    Location = db.Column(db.String(200), primary_key=True)
+    Blacks = db.Column(db.Float)
+    Asians = db.Column(db.Float)
+    NativeHawaiian_Pacific_Islanders = db.Column(db.Float)
+    Whites = db.Column(db.Float)
+    Hispanics_Latinos = db.Column(db.Float)
+    AmericanIndian_AlaskanNatives = db.Column(db.Float)
+    Two_or_Mores = db.Column(db.Float)
+    Others = db.Column(db.Float)
+
+    def __init__(self, Blacks, Asians, NativeHawaiian_PacficicIslanders, Whites, Hispanics_Latinos, AmericanIndian_AlaskanNatives, Two_or_Mores, Others):
+        self.Blacks = Blacks
+        self.Asians = Asians
+        self.NativeHawaiian_Pacific_Islanders = NativeHawaiian_PacficicIslanders
+        self.Whites = Whites
+        self.Hispanics_Latinos = Hispanics_Latinos
+        self.AmericanIndian_AlaskanNatives = AmericanIndian_AlaskanNatives
+        self.Two_or_Mores = Two_or_Mores
+        self.Others = Others
 
 
 @app.route('/')
 def home():
     return render_template("index.html")
-    
+
+
 @app.route('/map')
 def map():
 
@@ -102,6 +127,7 @@ def map():
         "Longitude": Longitude,
     }]
     return render_template("map.html", location_data=location_data)
+
 
 @app.route("/education")
 def education():
@@ -169,6 +195,41 @@ def marital_submit():
 @app.route("/ms-chart")
 def marital_chart():
     return render_template("ms_chart.html")
+
+
+@app.route("/race")
+def marital_status():
+    return render_template("race.html")
+
+
+@app.route("/race-submit", methods=["GET", "POST"])
+def ed_submit():
+    if request.method == "POST":
+        Location = request.form["search-form"]
+
+    results = db.session.query(Race.Location, Race.Blacks, Race.Asians, Race.NativeHawaiian_Pacific_Islanders, Race.Whites,
+                               Race.Hispanics_Latinos, Race.AmericanIndian_AlaskanNatives, Race.Two_or_Mores, Race.Others).all()
+    for result in results:
+        if (result[0] == Location):
+            Black = result[1]
+            Asian = result[2]
+            NativeHawaiian_Pacific_Islander = result[3]
+            White = result[4]
+            Hispanic_Latino = result[5]
+            AmericanIndian_AlaskanNative = result[6]
+            Two_or_More = result[7]
+            Other = result[8]
+    location_data = [{
+        'Black':Black,
+        'Asian':Asian,
+        'NativeHawaiian_Pacific_Islander' = NativeHawaiian_Pacific_Islander,
+        'White':White,
+        'Hispanic_Latino':Hispanic_Latino,
+        'AmericanIndian_AlaskanNative':AmericanIndian_AlaskanNative,
+        'Two_or_More':Two_or_More,
+        'Other':Other,
+    }]
+    return render_template("race_chart.html", location_data=location_data)
 
 
 if __name__ == "__main__":
