@@ -220,14 +220,14 @@ def ed_submit():
             Two_or_More = result[7]
             Other = result[8]
     location_data = [{
-        'Black':Black,
-        'Asian':Asian,
-        'NativeHawaiian_Pacific_Islander' = NativeHawaiian_Pacific_Islander,
-        'White':White,
-        'Hispanic_Latino':Hispanic_Latino,
-        'AmericanIndian_AlaskanNative':AmericanIndian_AlaskanNative,
-        'Two_or_More':Two_or_More,
-        'Other':Other,
+        'Black': Black,
+        'Asian': Asian,
+        'NativeHawaiian_Pacific_Islander'= NativeHawaiian_Pacific_Islander,
+        'White': White,
+        'Hispanic_Latino': Hispanic_Latino,
+        'AmericanIndian_AlaskanNative': AmericanIndian_AlaskanNative,
+        'Two_or_More': Two_or_More,
+        'Other': Other,
     }]
     return render_template("race_chart.html", location_data=location_data)
 
