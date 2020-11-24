@@ -12,8 +12,8 @@ var chart = new Chartist.Pie('.ct-chart', {
 }, {
     donut: true,
     showLabel: true,
-    // labelInterpolationFnc: function(value, idx) {
-    //     return value + " - " + series[idx]+ " % ";}
+     labelInterpolationFnc: function(value, idx) {
+         return series[idx]+ " % ";}
 });
 
 chart.on('draw', function (data) {
