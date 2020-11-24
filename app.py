@@ -32,8 +32,6 @@ class EducationCrime(db.Model):
         self.bachelor = bachelor
         self.graduate = graduate
 # Marital Status table
-
-
 class MaritalStatusCrime(db.Model):
     __tablename__ = 'crime_maritalstatus'
     Location = db.Column(db.String(200), primary_key=True)
@@ -51,8 +49,6 @@ class MaritalStatusCrime(db.Model):
         self.Widoweds = Widoweds
 
 # Income and Unemployment table
-
-
 class IncomeUnEmploy(db.Model):
     __tablename__ = 'crime_incomeunemploy'
     Location = db.Column(db.String(200), primary_key=True)
@@ -147,7 +143,7 @@ def income_unemployment_submit():
     if request.method == "POST":
         Location = request.form["search-form"]
 
-    results = db.session.query(
+    results = db.session.query(IncomeUnEmploy.Location,
         IncomeUnEmploy.Unemployment, IncomeUnEmploy.Median_Income).all()
     for result in results:
         if (result[0] == Location):
