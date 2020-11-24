@@ -1,7 +1,10 @@
 body {
     background-color: rgb(68, 134, 100);
   }
-h1.groove {border-style: groove;}
+h1{
+    border-style: groove;
+    border-width: 5px;
+}
 
 .center {
     text-align: center;
