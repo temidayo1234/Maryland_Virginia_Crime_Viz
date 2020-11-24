@@ -77,17 +77,17 @@ class Race(db.Model):
     Asians = db.Column(db.Float)
     NativeHawaiian_PacificIslanders = db.Column(db.Float)
     Whites = db.Column(db.Float)
-    Hispanics_Latinos = db.Column(db.Float)
+    Hispanic_Latinos = db.Column(db.Float)
     AmericanIndian_AlaskanNatives = db.Column(db.Float)
     Two_or_Mores = db.Column(db.Float)
     Others = db.Column(db.Float)
 
-    def __init__(self, Blacks, Asians, NativeHawaiian_PacficicIslanders, Whites, Hispanics_Latinos, AmericanIndian_AlaskanNatives, Two_or_Mores, Others):
+    def __init__(self, Blacks, Asians, NativeHawaiian_PacficicIslanders, Whites, Hispanic_Latinos, AmericanIndian_AlaskanNatives, Two_or_Mores, Others):
         self.Blacks = Blacks
         self.Asians = Asians
         self.NativeHawaiian_PacificIslanders = NativeHawaiian_PacficicIslanders
         self.Whites = Whites
-        self.Hispanics_Latinos = Hispanics_Latinos
+        self.Hispanic_Latinos = Hispanics_Latinos
         self.AmericanIndian_AlaskanNatives = AmericanIndian_AlaskanNatives
         self.Two_or_Mores = Two_or_Mores
         self.Others = Others
@@ -196,7 +196,7 @@ def race_submit():
         Location = request.form["search-form"]
 
     results = db.session.query(Race.Location, Race.Blacks, Race.Asians, Race.NativeHawaiian_PacificIslanders, Race.Whites,
-                               Race.Hispanics_Latinos, Race.AmericanIndian_AlaskanNatives, Race.Two_or_Mores, Race.Others).all()
+                               Race.Hispanic_Latinos, Race.AmericanIndian_AlaskanNatives, Race.Two_or_Mores, Race.Others).all()
     for result in results:
         if (result[0] == Location):
             Black = result[1]
