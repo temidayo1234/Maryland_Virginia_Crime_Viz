@@ -1,6 +1,11 @@
 body {
     background-color: #054375;
   }
+  #back-image {
+    background: url(/images/VA.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 h1 {
     border-style: groove;
     border-color: #0a738d;
