@@ -11,6 +11,9 @@ var chart = new Chartist.Pie('.ct-chart', {
 }, {
     donut: true,
     showLabel: true,
+    labelInterpolationFnc: function(value, idx) {
+        var percentage = Math.round(value / series.reduce(sum) * 100) + '%';
+        return labels[idx] + ' ' + percentage;}
 });
 
 chart.on('draw', function (data) {
@@ -27,7 +30,7 @@ chart.on('draw', function (data) {
         var animationDefinition = {
             'stroke-dashoffset': {
                 id: 'anim' + data.index,
-                dur: 1000,
+                dur: 10000,
                 from: -pathLength + 'px',
                 to: '0px',
                 easing: Chartist.Svg.Easing.easeOutQuint,
@@ -53,10 +56,10 @@ chart.on('draw', function (data) {
 });
 
 // For the sake of the example we update the chart every time it's created with a delay of 8 seconds
-chart.on('created', function () {
-    if (window.__anim21278907124) {
-        clearTimeout(window.__anim21278907124);
-        window.__anim21278907124 = null;
-    }
-    window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
-});
+// chart.on('created', function () {
+//     if (window.__anim21278907124) {
+//         clearTimeout(window.__anim21278907124);
+//         window.__anim21278907124 = null;
+//     }
+//     window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
+// });
