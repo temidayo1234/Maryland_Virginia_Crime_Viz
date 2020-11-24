@@ -29,7 +29,7 @@ class EducationCrime(db.Model):
         self.associate=associate
         self.bachelor=bachelor
         self.graduate=graduate
-# Marital Status tale
+# Marital Status table
 class MaritalStatusCrime(db.Model):
     __tablename__='crime_maritalstatus'
     Location = db.Column(db.String(200), primary_key=True)
@@ -46,6 +46,17 @@ class MaritalStatusCrime(db.Model):
         self.Separateds=Separateds
         self.Widoweds=Widoweds
 
+# Income and Unemployment table
+class IncomeUnEmploy(db.Model):
+    __tablename__='crime_incomeunemploy'
+    Location = db.Column(db.String(200), primary_key=True)
+    Unemployment = db.Column(db.Float)
+    Median_Income = db.Column(db.Float)
+
+    def __init__(self, Unemployment, Median_Income):
+        self.Unemployment= Unemployment
+        self.Median_Income= Median_Income
+
 @app.route('/')
 def home():
     """List all available api routes."""
@@ -53,6 +64,7 @@ def home():
         f"Available Routes:<br/>"
         f"/education <br/>"
         f"/marital-status <br/> "
+        f"/income-unemployment <br/> "
     )
 
 @app.route("/education")
@@ -114,6 +126,31 @@ def marital_submit():
 @app.route("/ms-chart")   
 def marital_chart():
     return render_template("ms_chart.html")
+
+@app.route("/income-unemployment")
+def income_unemployment():
+    return render_template("incunemp.html")
+
+@app.route("/income-unemployment-submit", methods=["GET", "POST"])
+def income_unemployment_submit():
+    if request.method == "POST":
+        Location = request.form["search-form"]
+    
+    results = db.session.query(IncomeUnEmploy.Unemployment, IncomeUnEmploy.Median_Income).all() 
+    for result in results:
+        if (result[0]==Location):
+            Unemployment= result[1]
+            Median_Income= result[2]
+
+    location_data = [{
+        "Unemployment": Unemployment,
+        "Median Income": Median_Income
+    }]
+    return render_template("incunemp_chart.html",location_data=location_data)
+
+@app.route("/income-unemployment-chart")   
+def income_unemployment_chart():
+    return render_template("incunemp_chart.html")
 
 if __name__ == "__main__":
     app.run()
