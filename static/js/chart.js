@@ -5,9 +5,9 @@ function makeResponsive() {
     // Define the chart's margins as an object
     var chartMargin = {
         top: 20,
-        right: 100,
+        right: 50,
         bottom: 30,
-        left: 200
+        left: 500
     };
     // Define dimensions of the chart area
     var chartWidth = svgWidth - chartMargin.left - chartMargin.right;

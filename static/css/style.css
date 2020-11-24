@@ -6,7 +6,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
   } */
-.button{background-color: green; font-size: 25px;cursor: pointer;}
+#button{background-color: green; font-size: 25px;cursor: pointer;}
 h2 {text-align: center;}
 
 h3 {text-align: center;}
