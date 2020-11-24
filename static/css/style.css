@@ -1,7 +1,7 @@
 body {
     background-color: #054375;
   }
-h {
+h1 {
     border-style: groove;
     border-color: #0a738d;
 }
@@ -47,7 +47,7 @@ li a:hover {
     fill: red;
   }
   
-form.group.impact {
+.form.group.impact {
     font-family: Impact, Charcoal, sans-serif;
     font-size: 30px;
   }
