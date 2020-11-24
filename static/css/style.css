@@ -6,7 +6,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
   } */
-
+.button{background-color: green; font-size: 25px;cursor: pointer;}
 h2 {text-align: center;}
 
 h3 {text-align: center;}
@@ -54,19 +54,5 @@ li a:hover {
   }
 
 .call {
-    font: 16px sans-serif;
+    font: 30px sans-serif;
   }
-
-  .tooltip {
-    display: none;
-    position: absolute;
-    width: 80px;
-    height: 30px;
-    padding: 2px;
-    font: 12px sans-serif;
-    text-align: center;
-    background: orange;
-    border: 0;
-    border-radius: 10px;
-  }
-  
