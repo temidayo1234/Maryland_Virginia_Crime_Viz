@@ -59,14 +59,8 @@ class IncomeUnEmploy(db.Model):
 
 @app.route('/')
 def home():
-    """List all available api routes."""
-    return (
-        f"Available Routes:<br/>"
-        f"/education <br/>"
-        f"/marital-status <br/> "
-        f"/income-unemployment <br/> "
-    )
-
+    return render_template("index.html")
+        
 @app.route("/education")
 def education():
     return render_template("ed.html")
