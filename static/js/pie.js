@@ -30,7 +30,7 @@ chart.on('draw', function (data) {
         var animationDefinition = {
             'stroke-dashoffset': {
                 id: 'anim' + data.index,
-                dur: 10000,
+                dur: 300,
                 from: -pathLength + 'px',
                 to: '0px',
                 easing: Chartist.Svg.Easing.easeOutQuint,
