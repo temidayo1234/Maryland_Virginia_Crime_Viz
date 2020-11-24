@@ -210,11 +210,11 @@ def race_submit():
     location_data = [{
         'Black': Black,
         'Asian': Asian,
-        'NativeHawaiian_PacificIslander':NativeHawaiian_PacificIslander,
+        'NativeIslander':NativeHawaiian_PacificIslander,
         'White': White,
-        'Hispanic_Latino': Hispanic_Latino,
-        'AmericanIndian_AlaskanNative': AmericanIndian_AlaskanNative,
-        'Two_or_More': Two_or_More,
+        'Hispanic': Hispanic_Latino,
+        'AlaskanNative': AmericanIndian_AlaskanNative,
+        'Multiple': Two_or_More,
         'Other': Other,
     }]
     return render_template("race_chart.html", location_data=location_data)
