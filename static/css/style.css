@@ -47,13 +47,13 @@ li a:hover {
     fill: red;
   }
   
-label.impact {
+form.group.impact {
     font-family: Impact, Charcoal, sans-serif;
-    font-size: 40px;
+    font-size: 30px;
   }
 
-.axis {
-    font: 25px sans-serif;
+.call {
+    font: 16px sans-serif;
   }
 
   .tooltip {

@@ -42,7 +42,7 @@ function makeResponsive() {
         .padding(0.05);
 
     // create axes
-    var yAxis = d3.axisLeft(yScale);
+    var yAxis = d3.axisLeft(`${yScale}%`);
     var xAxis = d3.axisBottom(xScale);
     var chartGroup = svg.append("g")
         .classed("chart-here", true)
@@ -66,33 +66,9 @@ function makeResponsive() {
         .attr("width", xScale.bandwidth())
         .attr("height", d => chartHeight - yScale(d))
         .attr("x", (d, i) => xScale(xLabels[i]))
-        .attr("y", d => yScale(d))
-        .attr("class", "tooltip").on("mouseover",(d, i)=> {
-            toolTip.style("display", "block");
-            toolTip.html(`<strong>${yValues[i]}</strong>`)
-                .style("left", d3.event.pageX + "px")
-                .style("top", d3.event.pageY + "px");
-        })
+        .attr("y", d => yScale(d));
     yValues.length = 0;
    
-
-    // // Step 1: Append a div to the body to create tooltips, assign it a class
-    // // =======================================================
-    // var toolTip = d3.select("body").append("div")
-    //     .attr("class", "tooltip");
-
-    // // Step 2: Add an onmouseover event to display a tooltip
-    // // ========================================================
-    // chartGroup.on("mouseover", function (d, i) {
-    //     toolTip.style("display", "block");
-    //     toolTip.html(`<strong>${yValues[i]}</strong>`)
-    //         .style("left", d3.event.pageX + "px")
-    //         .style("top", d3.event.pageY + "px");
-    // })
-        // Step 3: Add an onmouseout event to make the tooltip invisible
-        chartGroup.on("mouseout", function () {
-            toolTip.style("display", "none");
-        });
 }
 
 // When the browser loads, makeResponsive() is called.
