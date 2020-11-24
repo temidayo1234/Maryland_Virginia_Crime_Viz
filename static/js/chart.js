@@ -5,9 +5,9 @@ function makeResponsive() {
     // Define the chart's margins as an object
     var chartMargin = {
         top: 20,
-        right: 40,
+        right: 100,
         bottom: 30,
-        left: 100
+        left: 200
     };
     // Define dimensions of the chart area
     var chartWidth = svgWidth - chartMargin.left - chartMargin.right;
@@ -66,25 +66,31 @@ function makeResponsive() {
         .attr("width", xScale.bandwidth())
         .attr("height", d => chartHeight - yScale(d))
         .attr("x", (d, i) => xScale(xLabels[i]))
-        .attr("y", d => yScale(d));
+        .attr("y", d => yScale(d))
+        .attr("class", "tooltip").on("mouseover",(d, i)=> {
+            toolTip.style("display", "block");
+            toolTip.html(`<strong>${yValues[i]}</strong>`)
+                .style("left", d3.event.pageX + "px")
+                .style("top", d3.event.pageY + "px");
+        })
     yValues.length = 0;
    
 
-    // Step 1: Append a div to the body to create tooltips, assign it a class
-    // =======================================================
-    var toolTip = d3.select("body").append("div")
-        .attr("class", "tooltip");
+    // // Step 1: Append a div to the body to create tooltips, assign it a class
+    // // =======================================================
+    // var toolTip = d3.select("body").append("div")
+    //     .attr("class", "tooltip");
 
-    // Step 2: Add an onmouseover event to display a tooltip
-    // ========================================================
-    chartGroup.on("mouseover", function (d, i) {
-        toolTip.style("display", "block");
-        toolTip.html(`<strong>${yValues[i]}</strong>`)
-            .style("left", d3.event.pageX + "px")
-            .style("top", d3.event.pageY + "px");
-    })
+    // // Step 2: Add an onmouseover event to display a tooltip
+    // // ========================================================
+    // chartGroup.on("mouseover", function (d, i) {
+    //     toolTip.style("display", "block");
+    //     toolTip.html(`<strong>${yValues[i]}</strong>`)
+    //         .style("left", d3.event.pageX + "px")
+    //         .style("top", d3.event.pageY + "px");
+    // })
         // Step 3: Add an onmouseout event to make the tooltip invisible
-        .on("mouseout", function () {
+        chartGroup.on("mouseout", function () {
             toolTip.style("display", "none");
         });
 }

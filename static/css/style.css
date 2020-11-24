@@ -1,11 +1,9 @@
 body {
-    background-color: rgb(15, 12, 212);
+    background-color: #054375;
   }
-h1 {
-    border-style: solid;
-    border-width: 60%;
-    margin: auto;
-    border-color: indigo;
+h {
+    border-style: groove;
+    border-color: #0a738d;
 }
 
 h2 {text-align: center;}
