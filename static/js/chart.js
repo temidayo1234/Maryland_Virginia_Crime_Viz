@@ -1,7 +1,7 @@
 function makeResponsive() {
     // Define SVG area dimensions
     var svgWidth = 1200;
-    var svgHeight = 800;
+    var svgHeight = 600;
     // Define the chart's margins as an object
     var chartMargin = {
         top: 20,
